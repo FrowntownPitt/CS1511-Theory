@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Homework 3}
+\author{Austin Frownfelter \and Matthew Bialecki}
+\date{January 19, 2018}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 4}
+
+\subsection{Part A}
+\begin{quote}
+``Show by reduction from the Halting Problem that there is no Turing machine that takes as input a Turing machine M, and determines whether the language L(M) accepted by M is the empty language.''
+\end{quote}
+Assume there is a decider W for the problem described above.  Also assume there is a Turing machine Halting that takes as input a Turing machine P and string I.  This machine constructs a Turing machine W that takes input x.  If x$\neq$I, W rejects.  If x=I, W runs P on input I.  If P accepts or rejects, W rejects.  Halting then runs M on input W.  If M accepts, Halting accepts.  If M rejects, Halting rejects.
+
+P halts on I iff M accepts no strings.  Since Halting is undecidable, it is impossible for M to be a decider.  Therefore, the problem above is undecidable.
+
+\subsection{Part B}
+\begin{quote}
+``Show by reduction from the Halting Problem that there is no Turing machine that takes as input a Turing machine M, and determines whether the language L(M) accepted by M is the language of every string over the input alphabet.''
+\end{quote}
+Assume there is a decider W for the problem described above.  Also assume there is a Turing machine Halting that takes as input a Turing machine P and string I.  This machine constructs a Turing machine W that takes input x.  W runs P on I, then accepts.  Halting then runs M on input W.  If M accepts, Halting accepts.  If M rejects, Halting rejects.
+
+P halts on I iff M accepts every string.  Since Halting is undecidable, it is impossible for M to be a decider.  Therefore, the problem above is undecidable.
+
+\subsection{Part C}
+\begin{quote}
+``Show by reduction from the Halting Problem that there is no Turing machine that takes as input a Turing machine M, and determines whether the language L(M) accepted by M includes the string 11110.''
+\end{quote}
+Assume there is a decider W for the problem described above.  Also assume there is a Turing machine Halting that takes as input a Turing machine P and string I.  This machine constructs a Turing machine W that takes input x.  W runs P on I.  If P accepts or rejects I, W accepts if x=11110, otherwise it rejects.  Halting then runs M on input W.  If M accepts, Halting accepts.  If M rejects, Halting rejects.
+
+P halts on I iff M accepts every string.  Since Halting is undecidable, it is impossible for M to be a decider.  Therefore, the problem above is undecidable.
+
+\subsection{Part D}
+\begin{quote}
+"Let P be some property of languages.  Further assume there is a Turing machine M\textsubscript{1} that accepts a language L\textsubscript{1} that has property P, and a Turing machine M\textsubscript{2} that accepts a language L\textsubscript{2} that does not have property P.  Show by reduction from the Halting Problem that there is no Turing machine that takes as input a Turing machine M, and determines whether the language L(M) accepted by M satisfies property P."
+\end{quote}
+Assume there is a decider W for the problem described above.  Also assume there is a Turing machine Halting that takes as input a Turing machine T and string I.  This machine constructs a Turing machine W that takes input x.  W runs T on I.  If T accepts or rejects I, W accepts if the property P is satisfied, otherwise it rejects.  Halting then runs M\textsubscript{1} on input W.  If M\textsubscript{1} accepts, Halting accepts.  If M\textsubscript{1} rejects, Halting rejects.
+
+T halts on I iff M satisfies the property P.  Since Halting is undecidable, it is impossible for M to be a decider.  Therefore, the problem above is undecidable.
+
+\subsection{Part E}
+\begin{quote}
+"Explain why the first three subproblems are consequences of the fourth subproblem."
+\end{quote}
+Part D is a generic form of parts A-C.  Each problem is defined by its individual property.
+
+\end{document}

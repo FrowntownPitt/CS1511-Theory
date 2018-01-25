@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+\title{Homework 5}
+\author{Austin Frownfelter \and Matthew Bialecki}
+\date{January 24, 2018}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 7}
+\subsection{Part A}
+Show one valid computation history H for the input $I=101$ for Turing machine M.
+
+\[ \#>q_0101\_\#>1q_101\_\#>11q_11\_\#>110q_0\_\#>110q_0\_\#... \]
+
+\subsection{Part B}
+
+Give the Godel sentence $S$ for the $M$ and $I$ in the previous subproblem.
+
+$\exists H | $ H is a computation history that proves M halts on I.
+
+\bigskip
+$H$ is a valid computation history that proves M halts on I iff
+\begin{enumerate}[itemsep=0mm]
+\item First configuration is the starting configuration
+\item Each configuration follows the previous one
+\item Final configuration is the halting configuration
+\end{enumerate}
+
+where H can be represented as a number of base B where B is the size of the tape alphabet plus the number of final states in set Q + the pound sign.
+
+where
+
+\begin{enumerate}[label=\arabic*)]
+\item $\exists l$ $ l=log_B H$ where
+\begin{enumerate}[label=]
+\item$PLACE(l)=\# $ $\land $
+\item$PLACE(l-1)=> $ $\land $
+\item$PLACE(l-2)=q_0 $ $\land $
+\item$\forall i PLACE(i)\in I $ $|$ $ l-2>i>NEXT(l-2,\#) $
+\end{enumerate}
+
+\item$\forall q$ $STATE(q) $  $ q<log_B H-3$\\
+$TABLE(PREVS(q)-1-PREV(PREVS(q),\#)+PREV(q,\#), \\PREVS(q)-1)$
+
+\item$\exists p$ $PLACE(p)=q_h $ $ \forall q $ $STATE(q) $ $|$ $q\geq p$
+\end{enumerate}
+
+\begin{description}
+\item[PLACE(l)]$\iff H $ $mod$ $ B^{P+1}$ $div$ $B^P$
+\item[STATE(S)]$\iff PLACE(S)=q_0 \lor PLACE(S)=q_1 \lor PLACE(S)=q_h$
+\item[NEXT(i,s)]$\iff \exists j $ $PLACE(j)=s $ $|$ $j<i$ $|$ $\neg \exists k$ $PLACE(k)=s $ $k<j<i$
+\item[PREV(i,s)]$\iff \exists j $ $PLACE(j)=s $ $|$ $j>i$ $|$ $\neg \exists k$ $PLACE(k)=s $ $i<j<k$
+\item[NEXTS(i)]$\iff \exists s $ $STATE(s) \land NEXT(i,s)$
+\item[PREVS(i)]$\iff \exists s $ $STATE(s) \land PREV(i,s)$
+\item[TABLE(i,j)]$\iff PLACE(i)=PLACE(j) $ $\land $
+\begin{enumerate}[label=]
+\item $PLACE(i+1) = q_0 \land PLACE(i+2)=0 \land PLACE(j+1)=0 \land PLACE(j+2)=q_0$
+\item $PLACE(i+1) = q_0 \land PLACE(i+2)=1 \land PLACE(j+1)=1 \land PLACE(j+2)=q_1$
+\item $PLACE(i+1) = q_0 \land PLACE(i+2)=\_ \land PLACE(j+1)=q_0 \land PLACE(j+2)=\_$
+\item $PLACE(i+1) = q_1 \land PLACE(i+2)=0 \land PLACE(j+1)=1 \land PLACE(j+2)=q_1$
+\item $PLACE(i+1) = q_1 \land PLACE(i+2)=1 \land PLACE(j+1)=0 \land PLACE(j+2)=q_0$
+\item $PLACE(i+1) = q_1 \land PLACE(i+2)=\_ \land PLACE(j+1)=q_h \land PLACE(j+2)=\_$
+\end{enumerate}
+\end{description}
+
+By these three statements the Godel sentence is true iff H is a valid computation history.
+
+\end{document}
