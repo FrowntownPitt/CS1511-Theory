@@ -1,0 +1,80 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+\usepackage{graphics}
+
+\title{Homework 26}
+\author{Austin Frownfelter \and Matthew Bialecki}
+\date{March 26, 2018}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 46}
+\subsection{Part a}
+Merlin knows a Hamiltonian cycle C in the public graph G, and must prove to Arthur that he knows it/it exists.  Merlin sends a representation of the graph G to Arthur.  Arthur responds with a random coin flip.  On tails, Merlin shares the permutation with Arthur, who then checks whether it is consistent with the original graph G.  On heads, Merlin computes the permutation on the private Hamiltonian cycle C, and shares the representation of the permutation on just the cycle C.  Arthur then checks whether this is a Hamiltonian cycle, and whether it is consistent with the permuted graph G.
+
+\subsection{Part b}
+A computational zero knowledge proof is a relaxation of a perfect zero knowledge proof, where a verifier cannot learn any private information from an interaction in reasonable (polynomial) time.  That is, a verifier is unable to learn any information under its polynomial time bounds, however with more time the verifier may be able to learn something (by random sampling or other.)  In addition, an interactive proof is zero knowledge (computational or perfect) if it has completeness $\geq \frac23$ and soundness error $< \frac13$
+
+\subsection{Part c}
+This protocol is computationally zero knowledge because the verifier is unable to calculate the Hamiltonian cycle C.  In the tails case, it only learns the given permutation of G of this round.  In the heads case, it learns a Hamiltonian cycle C', but does not know what the edges in C' correspond to in graph G.  This is because of the computational bound of the verifier.
+
+
+\section{Problem 47}
+Universality:
+
+\begin{enumerate}[label=]
+\item Not: Set $C=I_1=1$, then $O_2$ will equal $\neg I_2$
+\item And: Set $I_2=0$, then $O_2$ will equal $C \land I_1$
+\item Or: Use the Not/And gates and DeMorgan's law: $a \lor b = \neg(\neg a \land \neg b)$
+\end{enumerate}
+
+\noindent Reversibility:
+
+Toffoli gates yield the original inputs except in the case where the first two bits are 1.  In this case, the Toffoli gate on the result yields the original input (an identity).
+
+
+\section{Problem 48}
+\subsection{Part a}
+Compute the H$_1$ operation, then the not, then the H$_1$ operation on the original state to yield: $a|H> +$ $(-b)|V>$
+
+\subsection{Part b}
+(This is assuming Horizontal input)
+
+Probability of horizontal output = $a^2$, since the superposition collapses to the horizontal input.
+
+\subsection{Part c}
+(This is assuming Vertical input)
+
+Probability of vertical output = $b^2$, since the superposition collapses to the vertical input.
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

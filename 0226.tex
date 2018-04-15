@@ -1,0 +1,78 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+\usepackage{graphics}
+
+\title{Homework 19}
+\author{Austin Frownfelter \and Matthew Bialecki}
+\date{February 26, 2018}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 29}
+\begin{quote}
+Show that if $\overline{3SAT} \leq _{r} 3SAT$ then PH collapses to $\Sigma_3^p$
+\end{quote}
+
+Informal proof:
+
+Assume there is a randomized reduction from $\overline{3SAT}$ to 3SAT.  Then there exists a function which maps $\overline{3SAT}$ to 3SAT with some probability of correctness $\geq \frac23$.
+
+To make this a certain function (with probability = 1), expand the function to a $\Sigma_3^p$ function.
+
+This function must take $\Sigma_3^p$ or harder to decide.  Therefore, it is $\Sigma_3^p$-complete.
+
+This $\Sigma_3^p$ function is closed under its complement.  Therefore, $\Sigma_3^p$ = $\Pi_3^p$.  Therefore, PH collapses to $\Sigma_3^p$.
+
+\noindent\rule{\linewidth}{1pt}
+
+$L \in \overline{3SAT}$
+
+$L \leq _r L'$
+
+$L' \in $ 3SAT
+
+Define a PTM M such that if $x\in L$ most advice A will cause M(x,A) to accept, and if $x\notin L$ most advice A will cause M(x,A) to reject.
+
+\medskip
+There exists a TM N:
+\begin{enumerate}[label=]
+\item $x\in L$: $ \forall a\exists w\forall A N(x,a,w,A)$ accepts
+\item $x\notin L$: $ \exists a\forall w\exists A N(x,a,w,A)$ rejects
+\end{enumerate}
+
+For $\overline{3SAT}$, N(x,a,w,A) runs M(x,A), M(x,a), M(x,a$\oplus w_1$), ..., M(x,a$\oplus w_k$) and accepts if 1 of them accepts and rejects if all reject.
+
+For $3SAT$, N(x,a,w,A) runs M(x,A), M(x,a), M(x,a$\oplus w_1$), ..., M(x,a$\oplus w_k$) and accepts if all reject and rejects if 1 of them accepts.
+
+This shows if there exists a randomized reduction from $\overline{3SAT}$ to 3SAT, then the resulting language is $\Sigma_3^p$-complete.  Also, it is closed under its complement (the complement is the negation of the quantifiers.) Thus it is also $\Pi_3^p$-complete.  Therefore, the Polynomial Hierarchy would collapse down to $\Sigma_3^p$.
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

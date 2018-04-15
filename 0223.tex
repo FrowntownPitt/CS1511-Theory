@@ -1,0 +1,138 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+\usepackage{graphics}
+
+\title{Homework 18}
+\author{Austin Frownfelter \and Matthew Bialecki}
+\date{February 23, 2018}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 29}
+\begin{quote}
+Show BP$\cdot$NP $\subseteq$ NP/Poly
+\end{quote}
+
+Let L $\in$ BP$\cdot$NP
+
+\medskip
+$\exists$ PTM M that runs nondeterministically in poly time.  
+
+$\forall x$ Probability(M(x) is wrong) $\leq$ 0.4
+
+\medskip
+Construct an M', which is a randomized reduction of L to 3SAT, for $n^2$ times and takes the majority.
+
+$\forall x$ P(M'(x) is wrong) $\leq \frac1{4^n}$
+
+The probability on all inputs x that M' is wrong = 
+
+\-\hspace{20px}$\Sigma_{i=1}^{2^n} p(M'(x_i) wrong) \leq \frac{2^n}{4^n} < 1$
+
+Therefore, $\exists$ random string such that M' is right on all inputs with that string as advice.
+
+M' decides L. L is randomly reducible to 3SAT.  
+
+3SAT can be trivially solved by a family of NP/Poly circuits as it is verified in polynomial time.  
+
+Since L is reducible to 3SAT, L can be solved by a family of NP/Poly circuits.
+
+Thus, L $\subseteq$ NP/Poly.  Therefore, BP$\cdot$NP $\subseteq$ NP/Poly.
+
+\section{Problem 30}
+\begin{quote}
+Show BPL $\in$ P
+\end{quote}
+
+Let L be an arbitrary language in BPL
+
+$\exists$ PTM M $\exists$ k such that 
+\begin{enumerate}
+\item M runs in space $\leq \log(|x|)$
+\item $x\in L$ $\reflectbox{R}A$ $M(x,A)$ accepts
+\item $x\notin L$ $\reflectbox{R}A$ $M(x,A)$ rejects
+\end{enumerate}
+
+m = the number of bits in A.
+
+
+\medskip
+Randomly marry pairs of inputs.  P(wrong in entire marriage) = P(wrong$)^2$
+
+
+\medskip
+$x\in L$ $\exists w $ $\forall A$ M(x,A) $\lor$ M(x,A$\oplus$w) accepts
+
+$x\notin L$ $\forall w $ $\exists A$ M(x,A) $\land$ M(x,A$\oplus$w) rejects
+
+
+\medskip
+$x\in L$ wrong $(\frac1{4^n})^2$
+
+$x\notin L$ wrong $\frac2{4^n}$
+
+
+\medskip
+$x\in L$: E[\# bad advice at k weddings] = $2^m*(\frac1{4^n})^{k+1}$ $< 1$ (i.e. there is some chance)
+
+$2^m < 4^{n(k+1)}$
+
+$m < n(k+1)$ $\rightarrow$ $k > \frac{m}{2n}-1$
+
+$m < \log(n)$ $\rightarrow$ $k > \frac{\log(n)}{2n} < 1$
+
+\medskip
+$x\notin L$: E[\# bad advice at k weddings] $\leq \frac{k+1}{4^n}$
+
+$\frac{\log(n)}{2n}*\frac1{4^n} < 1$
+
+\medskip
+$\exists$ TM N in P:
+\begin{enumerate}[label=]
+\item Runs the BPL machine
+\item Returns the result
+\end{enumerate}
+
+
+\medskip
+The probability N returns an incorrect result is P(wrong$)^{\log(n)}$
+
+It is possible to drive P(wrong) from $\frac13$ to $\frac1{3^n}$ with the error reduction strategy in polynomial time.  Thus, the probability N is correct is effectively 100\%.  Therefore, N is in P.
+
+N only uses log space, therefore it can be used to solve L in BPL, satisfying BPL.
+
+Therefore, L $\in$ P
+
+Therefore, BPL $\in$ P
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

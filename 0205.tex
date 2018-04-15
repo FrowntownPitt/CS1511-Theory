@@ -1,0 +1,125 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+\title{Homework 10}
+\author{Austin Frownfelter \and Matthew Bialecki}
+\date{February 5, 2018}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 14}
+\begin{quote}
+``Show by diagonalization that there is a language accepted by a Java program that is not accepted by any mini-Java program.''
+\end{quote}
+
+Assume all languages accepted by Java programs are accepted by mini-Java programs.
+
+Consider a table of all valid mini-Java programs.  The rows represent the programs and the columns represent the inputs.  Each cell is a 1 if the mini-Java program accepts that input and a 0 if it rejects the input.  The table is organized such that the $(i,i)$ cell is the $ith$ program running with itself as input.
+
+Now consider a row which represents a Java program where each $i$ element is a 0 if the $ith$ program accepts the $ith$ program as input, and a 1 if it rejects.  This row cannot exist in this table since it is exactly opposite the diagonal of the table.  Contradiction.  Therefore, there exist languages accepted by Java programs that are not accepted by any mini-Java programs.
+
+\section{Problem 15}
+\subsection{Part a}
+\begin{quote}
+Show that A can be accepted by a log-space Turing machine.
+\end{quote}
+
+Consider a TM M which accepts x iff x is a string of properly nested brackets, which is defined as follows:
+\begin{enumerate}[label=]
+\item Write a 0 on the work tape
+\item For each character $a$ in x starting from the left
+\item \begin{enumerate}[label=]
+\item If $a$ is `(', increase the counter on the work tape
+\item If $a$ is `)' and the counter on the work tape is 0, reject
+\item Otherwise, if $a$ is `(', decrease the counter on the work tape
+\end{enumerate}
+\item If the counter on the work tape is 0, accept; otherwise, reject.
+\end{enumerate}
+
+M decides the language A.  M only writes a counter on the work tape.  Since the counter ranges from 0 to the length of x and the length of x can be represented with a number of size $log(|x|)$, M uses only log space.  Therefore, A can be accepted by a log-space Turing machine.
+
+\subsection{Part b}
+\begin{quote}
+Show that B can be accepted by a log-space Turing machine.
+\end{quote}
+
+Consider a TM M which accepts x iff x is a string of properly nested brackets, which is defined as follows:
+\begin{enumerate}[label=]
+\item Write a 0 on the work tape
+\item For each character $a$ in x starting from the left
+\item \begin{enumerate}[label=]
+\item If $a$ is `(', increase the counter on the work tape
+\item If $a$ is `)' and the counter on the work tape is 0, reject
+\item Otherwise, if $a$ is `)', decrease the counter on the work tape
+\end{enumerate}
+\item If the counter on the work tape is not 0, reject
+
+\item Clear and write a 0 on the work tape
+\item For each character $a$ in x starting from the left
+\item \begin{enumerate}[label=]
+\item If $a$ is `[', increase the counter on the work tape
+\item If $a$ is `]' and the counter on the work tape is 0, reject
+\item Otherwise, if $a$ is `]', decrease the counter on the work tape
+\end{enumerate}
+\item If the counter on the work tape is not 0, reject
+\item Begin at the start of the input tape
+\item while current character c in x:
+\begin{enumerate}[label=]
+
+\item if x is '(': 
+\begin{enumerate}[label=]
+\item while the next(c) is '(': move c to the right
+\item If next(c) is ')', skip to the next loop iteration
+\item If next(c) is ']', reject
+\item Start a counter n
+\item For each character $a$ in x starting from c
+\item \begin{enumerate}[label=]
+\item If $a$ is `(', increase the counter n on the work tape
+\item If $a$ is `)', decrease the counter n on the work tape
+\item If $a$ is ')' and the counter is 0, set P\_right to the position of a
+\end{enumerate}
+\item Clear counter n
+\item For each character $a$ in x starting from c+1
+\item \begin{enumerate}[label=]
+\item If $a$ is `[', increase the counter n on the work tape
+\item If $a$ is `]', decrease the counter n on the work tape
+\item If $a$ is ']' and the counter is 0, set B\_right to the position of a
+\end{enumerate}
+\item if P\_right $<$ B\_right, reject
+\end{enumerate}
+
+\item if x is '[': 
+\begin{enumerate}[label=]
+\item while the next(c) is '[': move c to the right
+\item If next(c) is ']', skip to the next loop iteration
+\item If next(c) is ')', reject
+\item Start a counter n
+\item For each character $a$ in x starting from c
+\item \begin{enumerate}[label=]
+\item If $a$ is `[', increase the counter n on the work tape
+\item If $a$ is `]', decrease the counter n on the work tape
+\item If $a$ is ']' and the counter is 0, set B\_right to the position of a
+\end{enumerate}
+\item Clear counter n
+\item For each character $a$ in x starting from c+1
+\item \begin{enumerate}[label=]
+\item If $a$ is `(', increase the counter n on the work tape
+\item If $a$ is `)', decrease the counter n on the work tape
+\item If $a$ is ')' and the counter is 0, set P\_right to the position of a
+\end{enumerate}
+\item if B\_right $<$ P\_right, reject
+\end{enumerate}
+\item move c to c+2
+\end{enumerate}
+\item accept
+\end{enumerate}
+
+M decides B, and uses at most $4*log(|x|)$ space - 3 pointer variables (P\_right, B\_right, and c) and the counter n for searching for the matching close.  The definition of M is an explicit definition for the following: First, make sure the parentheses and brackets are nested properly individually.  Then, make sure there are no cases of ([ * )] where * is anything.  
+
+Therefore, B is accepted by a log-space Turing machine.
+
+\end{document}

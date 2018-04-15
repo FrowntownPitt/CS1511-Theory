@@ -1,0 +1,181 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+\usepackage{physics}
+\usepackage{graphics}
+
+\title{Homework 27}
+\author{Austin Frownfelter \and Matthew Bialecki}
+\date{March 28, 2018}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 49}
+
+$\ket{\mathbf{v}} = \alpha_{00}\ket{00} + \alpha_{10}\ket{10} + \alpha_{01}\ket{01} + \alpha_{11}\ket{11}$
+
+\subsection{Part a}
+
+$P(v=00) = (\alpha_{00}) ^2$
+
+\noindent$P(v=10) = (\alpha_{10}) ^2$
+
+\noindent$P(v=01) = (\alpha_{01}) ^2$
+
+\noindent$P(v=11) = (\alpha_{11}) ^2$
+
+\medskip
+\noindent In the case where the probability of a qubit being 0 or 1 is uniform, all probabilities are $\frac14$
+
+
+\subsection{Part b}
+$\ket{v_0v_1} = \sqrt{(\alpha_{00})^2 + (\alpha_{01})^2}\ket{0v_1} +  \sqrt{(\alpha_{10})^2 + (\alpha_{11})^2}\ket{1v_1} = $
+
+$\sqrt{(\alpha_{00})^2 + (\alpha_{01})^2} (\frac{\alpha_{00}}{\sqrt{(\alpha_{00})^2 + (\alpha_{01})^2}}\ket{00} +  \frac{\alpha_{01}}{\sqrt{(\alpha_{00})^2 + (\alpha_{01})^2}}\ket{01}) + $
+
+$\sqrt{(\alpha_{10})^2 + (\alpha_{11})^2} (\frac{\alpha_{10}}{\sqrt{(\alpha_{10})^2 + (\alpha_{11})^2}}\ket{10} +  \frac{\alpha_{11}}{\sqrt{(\alpha_{10})^2 + (\alpha_{11})^2}}\ket{11})$
+
+\medskip
+$= \alpha_{00}\ket{00} + \alpha_{10}\ket{10} + \alpha_{01}\ket{01} + \alpha_{11}\ket{11}$
+
+\bigskip
+\noindent Thus,
+
+$P(v=00) = (\alpha_{00}) ^2$
+
+$P(v=10) = (\alpha_{10}) ^2$
+
+$P(v=01) = (\alpha_{01}) ^2$
+
+$P(v=11) = (\alpha_{11}) ^2$
+
+
+
+\subsection{Part c}
+$\ket{v_0v_1} = \sqrt{(\alpha_{00})^2 + (\alpha_{10})^2}\ket{v_00} +  \sqrt{(\alpha_{01})^2 + (\alpha_{11})^2}\ket{v_01} = $
+
+$\sqrt{(\alpha_{00})^2 + (\alpha_{10})^2} (\frac{\alpha_{00}}{\sqrt{(\alpha_{00})^2 + (\alpha_{10})^2}}\ket{00} +  \frac{\alpha_{10}}{\sqrt{(\alpha_{00})^2 + (\alpha_{10})^2}}\ket{10}) + $
+
+$\sqrt{(\alpha_{01})^2 + (\alpha_{11})^2} (\frac{\alpha_{01}}{\sqrt{(\alpha_{01})^2 + (\alpha_{11})^2}}\ket{01} +  \frac{\alpha_{11}}{\sqrt{(\alpha_{01})^2 + (\alpha_{11})^2}}\ket{11})$
+
+\medskip
+$= \alpha_{00}\ket{00} + \alpha_{10}\ket{10} + \alpha_{01}\ket{01} + \alpha_{11}\ket{11}$
+
+\bigskip
+\noindent Thus,
+
+$P(v=00) = (\alpha_{00}) ^2$
+
+$P(v=10) = (\alpha_{10}) ^2$
+
+$P(v=01) = (\alpha_{01}) ^2$
+
+$P(v=11) = (\alpha_{11}) ^2$
+
+\section{Problem 50}
+
+\subsection{Part a}
+
+$x=y=1$
+
+\medskip
+$\ket{ij} = \frac1{\sqrt2}\ket{00} + \frac1{\sqrt2}\ket{11}$  - This is because the particles are entangled.
+
+\medskip
+Alice rotates by $\frac\pi8$.  This can be represented with a transformation matrix.
+
+\medskip
+After rotating, $\ket{ij} = \frac1{\sqrt2} ( \cos\frac\pi8 \ket{00} + \sin\frac\pi8\ket{10}) + \frac1{\sqrt2} ( \cos\frac{5\pi}8 \ket{01} + \sin\frac{5\pi}8\ket{11})$.  Each amplitude is the corresponding value in the transformation.  Note that the probabilities (square of amplitudes) sum to 1.
+
+\medskip
+Bob rotates by $-\frac\pi8$.  This can also be represented with a transformation matrix.
+
+\medskip
+After rotating, $\ket{ij} = \frac1{\sqrt2} ( \cos\frac\pi8 \ket{00} - \sin\frac\pi8\ket{10}) + \frac1{\sqrt2} ( \cos\frac{3\pi}8 \ket{01} + \sin\frac{3\pi}8\ket{11})$.  Each amplitude is the corresponding value in the transformation.  Note that the probabilities (square of amplitudes) sum to 1.
+
+
+\bigskip
+Alice measures her entangled particle.  
+
+\medskip
+$P(0) = (\frac1{\sqrt2} \cos\frac\pi8)^2 + (\frac1{\sqrt2} \cos\frac{5\pi}8)^2 = \frac12$.  This is the sum of the probabilities Alice's qubit is 0, where Bob's is 0 or 1.
+
+$P(1) = (\frac1{\sqrt2} \sin\frac\pi8)^2 + (\frac1{\sqrt2} \sin\frac{5\pi}8)^2 = \frac12$.  This is the sum of the probabilities Alice's qubit is 1, where Bob's is 0 or 1.
+
+\bigskip
+Bob measures his entangled particle.
+
+\medskip
+
+When Alice reads a 0, Bob's qubit is in the following state:
+
+$\ket{0b}=\frac{\frac1{\sqrt2} \cos \frac\pi8}{ \sqrt{(\frac1{\sqrt{2}}\cos(\frac\pi8))^2+(\frac1{\sqrt{2}}\cos(\frac{3\pi}8))^2}} \ket{00} + $
+$\frac{\frac1{\sqrt2} \cos \frac{3\pi}8}{ \sqrt{(\frac1{\sqrt{2}}\cos(\frac\pi8))^2+(\frac1{\sqrt{2}}\cos(\frac{3\pi}8))^2}} \ket{01}$
+
+\medskip
+When Alice reads a 1, Bob's qubit is in the following state:
+
+$\ket{0b}=\frac{\frac1{\sqrt2} \sin -\frac\pi8}{ \sqrt{(\frac1{\sqrt{2}}\sin(\frac\pi8))^2+(\frac1{\sqrt{2}}\sin(\frac{3\pi}8))^2}} \ket{00} + $
+$\frac{\frac1{\sqrt2} \sin \frac{3\pi}8}{ \sqrt{(\frac1{\sqrt{2}}\sin(\frac\pi8))^2+(\frac1{\sqrt{2}}\sin(\frac{3\pi}8))^2}} \ket{01}$
+
+\medskip
+Thus, 
+
+$P(0|$Alice $=0)= \frac{\frac{1}{2} \cos^2\frac\pi8}{\frac{1}{2}} = \cos^2\frac\pi8 \approx 0.85355$
+
+$P(0|$Alice $=1)= \frac{\frac{1}{2} \sin^2\frac\pi8}{\frac{1}{2}} = \sin^2\frac\pi8 \approx 0.14645$
+
+$P(1|$Alice $=0)= \frac{\frac{1}{2} \cos^2\frac{3\pi}8}{\frac{1}{2}} = \cos^2\frac{3\pi}8 \approx 0.14645$
+
+$P(1|$Alice $=1)= \frac{\frac{1}{2} \sin^2\frac{3\pi}8}{\frac{1}{2}} = \sin^2\frac{3\pi}8 \approx 0.85355$
+
+\medskip
+Thus, the resulting probability Alice and Bob win when $x=y=1 \approx  0.14645$ 
+
+\subsection{Part b}
+
+The protocols appear to be the same.  Therefore, the probabilities should be equal.
+
+\medskip
+\noindent When $x=y=0$ the probability they win is 1.
+
+\medskip
+\noindent When $x\neq y$, the probability they win $\approx  0.85355$ (when $a = b$).  This is taken from the calculation above, which is equivalent to the book.
+
+\medskip
+\noindent When $x=y=1$, the probability they win is $\approx  0.14645$ (when $a\neq b$).  This is taken from the calculation above, which should be equivalent to the book.
+
+\bigskip
+The resulting probability they win is $\frac14*1 + \frac12*0.8535 + \frac 14 * 0.1465 \approx 0.71$
+
+This is less than the probability in the book, which means the math done in part a for us was incomplete.  The 0.1465 should be 0.5.  However, the probability they win in the lecture's protocol is equal to the book's protocol, or 0.8.
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+\title{Homework 15}
+\author{Austin Frownfelter \and Matthew Bialecki}
+\date{February 16, 2018}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 23}
+\begin{quote}
+``Describe a decidable language in P/poly that is not in P''
+\end{quote}
+
+
+Assume $L \notin EXP$.
+
+$L'=\{1^m | m\in L\}$
+
+There exists a family of circuits which decides $L'$ in polynomial gates ($L'\in P/poly$)
+
+If $L'$ runs in polynomial time on input $1^m$ (relative to $m$) then $L$ runs in exponential time on input $m$ (relative to $n = \log m$).
+
+This contradicts with the assumption, which means L must be contained in $EXP$.  Therefore, this language is in P/poly but not in P.
+
+
+\section {Problem 24}
+\subsection{Part a}
+\begin{quote}
+Show for every $k > 0$ that PH contains languages whose circuit complexity is $\Omega(n^k)$
+\end{quote}
+
+For any given k, construct a TM that decides a $\Sigma_k^p$ language as such: The input is a quantified boolean formula with k input variables.
+
+There exists a circuit which "simulates" this TM.
+
+This circuit's complexity is greater than $n^k$.
+
+Therefore, for all k, there exists a language which is decided by a family of circuits where $|C_n|\geq n^k$
+
+\subsection{Part b}
+\begin{quote}
+Solve question 6.5 with PH replaced by $\Sigma_{2}^p$ (if your solution didn't already do this).
+\end{quote}
+
+By the logic in the previous problem, there existed a circuit which decided a $\Sigma_2^p$ language in complexity $\geq n^k$.
+
+\subsection{Part c}
+\begin{quote}
+Show that if P = NP, then there is a language in EXP that requires circuits of size $\frac{2^n}n$.
+\end{quote}
+
+If P = NP then the Polynomial Time Hierarchy would collapse, having all $\Sigma_k^p$ and $\Pi_k^p$ problems be solved in time of a $\Sigma_1^p$ problem.  Since EXP must be a strict superset of PH (per the Time Hierarchy Theorem), the circuit lower boundary of EXP would decrease to $\frac{2^n}n$.
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+

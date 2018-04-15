@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+\title{Homework 9}
+\author{Austin Frownfelter \and Matthew Bialecki}
+\date{February 2, 2018}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 13}
+\subsection{$M\rightarrow N$}
+Let $N=M$, $b=1$.
+\\Since M accepts x if $x\in L$ in time $T(|x|)$, N will accept x in time $1*T(|x|)$.
+
+\subsection{$N\rightarrow M$}
+To construct M from N, increase the alphabet size of M by a factor of b.  Reconstruct M to be able to accept these larger alphabet symbols.
+
+Construct a mapping of permutations of symbols of length 1 to b in N to the alphabet in M.
+
+Begin at the start state of N
+
+Search using a DFS to a depth of $k*b$
+
+Pause at this point and create a transition from the parent state ($(k-1)*b$) to the current state using the single alphabet symbol mapped by the path used to get there.
+
+If the DFS gets to a depth $\neq k*b$ and cannot go farther, create a transition from the parent state to the current state using the single alphabet symbol mapped by the path used to get there.
+
+M is a "sped up" version of N, since N's transitions are traversed $b$-at-a-time.
+
+Since there exists a mapping of $M\rightarrow N$ and $N\rightarrow M$, the two definitions are equivalent.
+
+\end{document}

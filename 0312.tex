@@ -1,0 +1,130 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+\usepackage{graphics}
+
+\title{Homework 20}
+\author{Austin Frownfelter \and Matthew Bialecki}
+\date{March 12, 2018}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 32}
+\subsection{Part a}
+\begin{quote}
+Prove IP' = IP
+\end{quote}
+
+Let L be an arbitrary language in IP'.
+
+$\exists$ BPP verifier
+
+$\exists$ probabilistic prover
+
+The prover-verifier protocol is run, with the end result having the verifier accepting or rejecting if the prover's strategy is correct or not.  Instead of halting here, run the protocol a polynomial number of times and output the majority (i.e. boost the result to near-certainty). 
+
+This runs in a polynomial number of steps, thus it runs in polynomial time.
+
+Therefore, L $\in$ IP.
+
+\medskip
+This is true for all languages in IP', therefore IP' = IP.
+
+
+\subsection{Part b}
+\begin{quote}
+Prove IP $\subseteq$ PSPACE.
+\end{quote}
+
+The Prover may use unbounded computational power to prove the string is in the language.  However, there exists some optimal prover for a given verifier V, which we can find in polynomial space.
+
+To find the optimal prover, recursively iterate over all possible communications between the prover and the verifier.  We will use the best P such that V will accept iff P can prove x is in the language.
+
+To recursively iterate over all communications, do a depth-first search to find the best path that yields an accept result.  Since by definition of IP, there are a polynomial number of questions from the verifier, there is a polynomial depth to this tree.  The size of the resulting path would be polynomial, since the path itself would have values on the order of exponential.
+
+\medskip
+As a result, the prover can be polynomial size, therefore IP $\subseteq$ PSPACE.
+
+
+\subsection{Part c}
+\begin{quote}
+Prove IP' = IP
+\end{quote}
+
+Let L be an arbitrary language in IP'.  The probability a TM that decides L accepts if x$\in$L = 1, which is greater than $\frac23$.  Thus, L $\in$ IP.
+
+Let L be an arbitrary language in IP.  Boost the TM that decides L to drive the probability it is correct if x$\in$L to 1-$\frac1{4^n}$.  Then, use the strategy from the proof that BPP $\in$ $\Sigma_2^p$ to marry k results from that TM.  There must exist some sequence of weddings such that the result will always be correct if x$\in$L.  
+
+Thus, L $\in$ IP'.  Therefore, IP' = IP.
+
+
+\subsection{Part d}
+\begin{quote}
+Prove IP' = IP
+\end{quote}
+
+Let L be an arbitrary language in NP.  The probability a TM that decides L is correct is 1, which is greater than the probabilities of IP'.  Therefore, L $\in$ IP'.
+
+Let L be an arbitrary language in IP'.  Boost the TM that decides L to drive the probability it is correct when x $\in$ L from $\frac23$ to $1-\frac1{4^n}$.  Do the marriage strategy like in Part c, to make certain the result is correct.  
+
+Thus, L $\in$ NP.  Therefore, IP' = NP.
+
+
+\section{Problem 33}
+
+If for every x $\in$ L there exists a prover, then we can find that prover when that x occurs.  We can construct a prover P which includes all of those provers, which will satisfy all strings x $\in$ L.
+
+
+\section{Problem 34}
+\begin{quote}
+Prove AM = BP.NP
+\end{quote}
+
+Prove AM $\subseteq$ BP.NP
+
+The AM protocol states V sends random bits to M, which then sends an advice string which V should use to accept or reject.  The probability V accepts is $\geq \frac23$ if x $\in$ L and $\leq \frac13$ if x $\notin$ L.
+
+With these values r, the random question, and x, the input, there exists some function which is the randomized reduction from the language to 3SAT.  If x $\in$ L, then the probability the randomized reduction is in 3SAT is $\geq$ $\frac23$, otherwise it is $\leq \frac13$.  
+
+Therefore, AM $\subseteq$ BP.NP.
+
+
+\bigskip
+Prove BP.NP $\subseteq$ AM
+
+There exists some function which constructs a randomized reduction from L to 3SAT.  V sends a random message to M, which M then uses to construct a valid randomized reduction from L to 3SAT.  If the reduction is actually valid, V accepts with probability $\geq \frac23$, otherwise it accepts with probability $\leq \frac13$.
+
+Therefore, BP.NP $\subseteq$ AM.
+
+\medskip
+Therefore, AM = BP.NP
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

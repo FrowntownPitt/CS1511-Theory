@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+\title{Homework 17}
+\author{Austin Frownfelter \and Matthew Bialecki}
+\date{February 21, 2018}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 27}
+\begin{quote}
+Describe a real number $\rho$ such that given a random coin that comes up Heads with probability $\rho$, a Turing machine can decide an undecidable language in polynomial time.
+\end{quote}
+
+Using the proof for Lemma 7.12: 
+
+Assume there exists a polynomial method of calculating the $i$th digit of an irrational number.  Construct a Turing Machine such that every $i$th step, it flips a coin and compares it to the $i$th digit in the binary representation of an  irrational number $\rho$, with a 0 being tails and a 1 being heads.  If it is equal, it continues.  If it is less, it rejects and halts.  
+
+The expected running time for this TM $= \Sigma_i i^c \frac1{2^i}$, which is bounded by polynomial time for any $c>0$.  Since this expected runtime is polynomial, the runtime for an irrational number $x: 0<x<1$ is polynomial time.  The probability it accepts is equal to $\Sigma_i p_i\frac1{2^i}$, which is equal to $\rho$, the irrational number in the TM.  Thus, there is a polynomial time TM that decides whether a number is irrational.
+
+This TM could be used to decide whether an input is equal to an irrational number $\rho$.  An example is where $\rho=\frac1{\sqrt2}$.  The probability it accepts is equal to $\rho$.  The expected running time is $\Sigma_i i^c \frac1{2^i}$, a polynomial time.  Since it is impossible to compare equal irrational numbers in polynomial time, the initial assumption must be wrong.
+
+\section{Problem 28}
+
+(NP $\cup$ CoNP) $\subseteq$ PP
+
+\bigskip
+NP $\subseteq$ PP
+
+NP accepts or rejects in polynomial time.  
+
+Its probability of being right = 1.  Thus, NP $\subseteq$ PP
+
+\bigskip
+CoNP $\subseteq$ PP
+
+CoNP accepts or rejects in polynomial time.  
+
+Its probability of being right = 1.  Thus, CoNP $\subseteq$ PP.  
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

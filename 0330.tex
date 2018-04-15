@@ -1,0 +1,250 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+\usepackage{physics}
+\usepackage{graphics}
+
+\title{Homework 28}
+\author{Austin Frownfelter \and Matthew Bialecki}
+\date{March 30, 2018}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 51}
+
+In the final observation in Simon's algorithm, we observe $y$ in the first $n$ bits iff $a \odot y \mod 2 = 0$.  When $a = 0$, the inner product of $a$ and $y$ will always be zero.  Thus, we will always observe $y$ in the first $n$ bits when $a=0$.
+
+In the case where $x=0^n$ and $a=0^n$, $y=0^n$ and we will learn no bits of $a$ ($0=0$).  In all other cases, we discover the sum of $a_i$ bits where $y_i=1$ is equal to zero.  If the algorithm is run $2n$ times, there is an extremely high likelihood that we get $n$ independent equations, allowing us to solve for all bits in $a$.  
+
+Therefore, if $a=0^n$, Simon's algorithm still works.
+
+\section{Problem 52}
+
+\subsection{Part a}
+
+We applied the Kroenecker product ($\otimes$) on $H_1$ and the basis (denoted as $I$):
+
+$H_1 \otimes I = \frac1{\sqrt2}(\begin{smallmatrix} 1&1\\1&-1 \end{smallmatrix}) \otimes (\begin{smallmatrix} 1&0\\0&1 \end{smallmatrix})=$
+
+\[
+\frac1{\sqrt2}
+\begin{bmatrix}
+1 & 0 & 1 & 0\\
+0 & 1 & 0 & 1\\
+1 & 0 & -1 & 0\\
+0 & 1 & 0 & -1
+\end{bmatrix}
+\]
+
+\subsection{Part b}
+
+In Part A we did $H_1\otimes I$ because the $H_1$ is applied to the first qubit, and the second qubit remains the same.  Thus, we took the Kroenecker product ($\otimes$) on the basis $I$ and $H_1$:
+
+$I \otimes H_1 = (\begin{smallmatrix} 1&0\\0&1 \end{smallmatrix}) \otimes \frac1{\sqrt2}(\begin{smallmatrix} 1&1\\1&-1 \end{smallmatrix})=$
+
+\[
+\frac1{\sqrt2}
+\begin{bmatrix}
+1 & 1 & 0 & 0\\
+1 & -1 & 0 & 0\\
+0 & 0 & 1 & 1\\
+0 & 0 & 1 & -1
+\end{bmatrix}
+\]
+
+
+\subsection{Part c}
+
+$
+\frac1{\sqrt2}
+\begin{bmatrix}
+1 & 0 & 1 & 0\\
+0 & 1 & 0 & 1\\
+1 & 0 & -1 & 0\\
+0 & 1 & 0 & -1
+\end{bmatrix}
+\cdot
+\frac1{\sqrt2}
+\begin{bmatrix}
+1 & 1 & 0 & 0\\
+1 & -1 & 0 & 0\\
+0 & 0 & 1 & 1\\
+0 & 0 & 1 & -1
+\end{bmatrix}
+=
+\frac12
+\begin{bmatrix}
+1 & 1 & 1 & 1\\
+1 & -1 & 1 & -1\\
+1 & 1 & -1 & -1\\
+1 & -1 & -1 & 1
+\end{bmatrix}$
+
+
+\subsection{Part d}
+
+
+$H_2(a\ket{00} + b\ket{01} + c\ket{10} + d\ket{11}) = $
+
+\medskip
+$
+\frac1{\sqrt2}
+\begin{bmatrix}
+1 & 1 & 1 & 1\\
+1 & -1 & 1 & -1\\
+1 & 1 & -1 & -1\\
+1 & -1 & -1 & 1
+\end{bmatrix}
+\cdot
+\frac1{\sqrt2}
+\begin{bmatrix}
+a & 0 & 0 & 0\\
+0 & b & 0 & 0\\
+0 & 0 & c & 0\\
+0 & 0 & 0 & d
+\end{bmatrix}
+=
+\frac12
+\begin{bmatrix}
+a & b & c & d\\
+a & -b & c & -d\\
+a & b & -c & -d\\
+a & -b & -c & d
+\end{bmatrix} = $
+\medskip
+
+\smallskip
+$a\frac12(\ket{00}+\ket{01}+\ket{10}+\ket{11}) + $
+
+\smallskip
+$b\frac12(\ket{00}- \ket{01}+\ket{10}- \ket{11}) + $
+
+\smallskip
+$c\frac12(\ket{00}+\ket{01}- \ket{10}- \ket{11}) + $
+
+\smallskip
+$d\frac12(\ket{00}- \ket{01}- \ket{10}+\ket{11}) = $
+
+\smallskip
+$\frac12[(a+b+c+d)\ket{00} + (a-b+c-d)\ket{01} + (a+b-c-d)\ket{10} + (a-b-c+d)\ket{11})]$
+
+
+\subsection{Part e}
+
+$(H_1\otimes I)\cdot(a\ket{00} + b\ket{01} + c\ket{10} + d\ket{11}) = $
+
+\medskip
+$
+\frac1{\sqrt2}
+\begin{bmatrix}
+1 & 0 & 1 & 0\\
+0 & 1 & 0 & 1\\
+1 & 0 & -1 & 0\\
+0 & 1 & 0 & -1
+\end{bmatrix}
+\cdot
+\frac12
+\begin{bmatrix}
+a & 0 & 0 & 0\\
+0 & b & 0 & 0\\
+0 & 0 & c & 0\\
+0 & 0 & 0 & d
+\end{bmatrix}
+=
+\frac1{\sqrt2}
+\begin{bmatrix}
+a & 0 & c & 0\\
+0 & b & 0 & d\\
+a & 0 & -c & 0\\
+0 & b & 0 & -d
+\end{bmatrix} = $
+\medskip
+
+\smallskip
+$a\frac1{\sqrt2}(\ket{00}+\ket{10}) + $
+
+\smallskip
+$b\frac1{\sqrt2}(\ket{01}+\ket{11}) + $
+
+\smallskip
+$c\frac1{\sqrt2}(\ket{00}-\ket{10}) + $
+
+\smallskip
+$d\frac1{\sqrt2}(\ket{01}-\ket{11}) = $
+
+\medskip
+$\frac1{\sqrt2}((a+c)\ket{00}+ (b+d)\ket{01} + (a-c)\ket{10} + (b-d)\ket{11})$
+
+
+\subsection{Part f}
+$
+\frac1{\sqrt2}
+\begin{bmatrix}
+1 & 1 & 0 & 0\\
+1 & -1 & 0 & 0\\
+0 & 0 & 1 & 1\\
+0 & 0 & 1 & -1
+\end{bmatrix}
+\cdot
+\frac1{\sqrt2}
+\begin{bmatrix}
+a & 0 & 0 & 0\\
+0 & b & 0 & 0\\
+0 & 0 & c & 0\\
+0 & 0 & 0 & d
+\end{bmatrix}
+=
+\frac12
+\begin{bmatrix}
+(a+c) & (b+d) & 0 & 0\\
+(a+c) & -(b+d) & 0 & 0\\
+0 & 0 & (a-c) & (b-d)\\
+0 & 0 & (a-c) & -(b-d)
+\end{bmatrix} = $
+
+\smallskip
+$\frac12[ (a+c)(\ket{00}+\ket{01}) +$
+
+\smallskip
+$(b+d)(\ket{00}-\ket{01}) +$
+
+\smallskip
+$(a-c)(\ket{10}+\ket{11}) + $
+
+\smallskip
+$(b-d)(\ket{10}-\ket{11})] = $
+
+\medskip
+$\frac12[(a+b+c+d)\ket{00} + (a-b+c-d)\ket{01} + (a+b-c-d)\ket{10} + (a-b-c+d)\ket{11})]$
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

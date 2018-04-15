@@ -1,0 +1,118 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+\usepackage{physics}
+\usepackage{graphics}
+
+\title{Homework 29}
+\author{Austin Frownfelter \and Matthew Bialecki}
+\date{April 2, 2018}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 53}
+
+\subsection{Part a}
+Alice can do rotations, specifically $\frac\pi2$ rotations, based on values $x,y$:
+
+If $x=y=0$, do not rotate.
+
+If $x=1, y=0$, rotate $a$ by $\frac\pi2$.
+
+If $x=1, y=1$, rotate $a$ by $\pi$.
+
+If $x=0, y=1$, rotate $a$ by $3\frac\pi2$.
+
+\subsection{Part b}
+The general form for the process described above:
+
+$\ket{a}=\frac1{\sqrt2}[-2(x-\frac12)\ket{0}-2(y-\frac12)\ket{1}]$
+
+$\ket{b}=\frac1{\sqrt2}(\ket0 + \ket1)$
+
+\subsection{Part c}
+
+In the case of the values ($x,y$), the qubits are in the following states:
+
+\smallskip
+($0,0$): $\frac12(\ket{00}+\ket{01}+\ket{10}+\ket{11})$
+
+\smallskip
+($0,1$): $\frac12(\ket{00}+\ket{01}-\ket{10}-\ket{11})$
+
+\smallskip
+($1,0$): $\frac12(-\ket{00}-\ket{01}+\ket{10}+\ket{11})$
+
+\smallskip
+($1,1$): $\frac12(-\ket{00}-\ket{01}-\ket{10}-\ket{11})$
+
+\bigskip
+\noindent If an $H_2$ operation is applied, the following states remain:
+
+\smallskip
+($0,0$): $\ket{00}$
+
+\smallskip
+($0,1$): $\ket{10}$
+
+\smallskip
+($1,0$): $-\ket{10}$
+
+\smallskip
+($1,1$): $-\ket{00}$
+
+There is no way to distinguish the values of $x,y$ other than whether $x=y$.
+
+\bigskip
+\noindent If an $H_1$ operation is applied to $a$, the following states remain:
+
+\smallskip
+($0,0$): $\frac1{\sqrt2}(\ket{00} + \ket{01})$
+
+\smallskip
+($0,1$): $\frac1{\sqrt2}(\ket{10} + \ket{11})$
+
+\smallskip
+($1,0$): $-\frac1{\sqrt2}(\ket{10} + \ket{11})$
+
+\smallskip
+($1,1$): $-\frac1{\sqrt2}(\ket{00} + \ket{01})$
+
+As before, there is no way to distinguish the values of $x,y$ other than whether $x=y$.
+
+
+\bigskip
+
+\bigskip
+
+We were unable to come up with a process that would give us a way for Bob to be certain the values $x,y$.  We believe it must involve $H_1$ operations with measurements, perhaps with something we are missing.
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

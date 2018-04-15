@@ -1,0 +1,51 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+\usepackage{graphics}
+
+\title{Homework 21}
+\author{Austin Frownfelter \and Matthew Bialecki}
+\date{March 14, 2018}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 35}
+\begin{quote}
+Prove there exists a perfectly complete AM[$O$(1)] protocol for proving the lower bound on set size.
+\end{quote}
+
+The standard AM protocol that proves the set lower bound has completeness (accepts if x $\in$ L) $\geq \frac23$.  We already know there is a trivial way to boost this completeness to $1-\frac1{4^n}$ such that it is still an AM protocol.  To get to perfect completeness (= 1), we will use the marriage technique from the BPP $\subseteq$ $\Sigma_2^p$.
+
+The Verifier will take a sequence of weddings and will accept if there exists some marriage such that the result makes it accept.  More formally, V(y,w) will accept iff $\exists$w (h(x) = y) $\lor$ (h(x) = w$_1$ $\oplus$ y) $\lor$ ... $\lor$ (h(x) = w$_i$ $\oplus$ y).
+
+This shows there is a perfectly complete AM protocol which proves the set lower bound.  Since the marriages Merlin must devise depend solely on y, which Arthur provides in the first question, the protocol is run in AM[$O$(1)].
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

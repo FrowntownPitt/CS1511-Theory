@@ -1,0 +1,105 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+\title{Homework 8}
+\author{Austin Frownfelter \and Matthew Bialecki}
+\date{January 31, 2018}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 11}
+\subsection{Part a}
+\begin{quote}
+``Show that the set of semi-incompressible strings (\(K(x)\geq \sqrt{n}\)) is not computable''
+\end{quote}
+
+Assume there exists a program $P_{n}$:
+\begin{enumerate}[label=]
+\item for each string x of size n do
+\begin{enumerate}[label=]
+\item If $K(x)\geq \sqrt{n}$ then output(x)
+\end{enumerate}
+\end{enumerate}
+
+$P_{n}$=$\Theta (log_{2}(n))$ for an arbitrarily large n
+
+Contradiction of the incompressibility of the output of $P_{n}$
+
+Therefore the set of semi-incompressible strings is not computable.
+
+\subsection{Part b}
+\begin{quote}
+``Show that there are only finitely many incompressible strings that have the property that the number of bits that 0 in the string is equal to the number of bits that are 1 in the string.''
+\end{quote}
+
+Consider a program $P_{n}$ which generates all strings s of length n by tossing a fair coin with 1:heads, 0:tails.
+
+For an arbitrary $n$ there exist at most $n$ incompressible strings.
+
+As $n\rightarrow \infty$, the probability $H=T$ $\frac{1}{\sqrt{n}}\rightarrow0$
+
+Therefore, the number of incompressible strings with this property will converge to a finite number.
+
+\subsection{Part c}
+\begin{quote}
+``Show that the set of incompressible strings contains no infinite subset that is recursively enumerable''
+\end{quote}
+
+Consider program $P$
+\begin{enumerate}[label=]
+\item for n: $0\rightarrow\infty$
+\begin{enumerate}[label=]
+\item for each string x of size n do
+\begin{enumerate}[label=]
+\item If $K(x)\geq n$ then output x
+\end{enumerate}
+\end{enumerate}
+\end{enumerate}
+
+$P_{n}$=$\Theta (log_{2}(n))$ for an arbitrarily large n
+
+Contradiction of the incompressibility of the output of $P_{n}$
+
+Since incompressible strings cannot be computed, the set of incompressible strings is not recursively enumerable.
+
+\subsection{Part D}
+\begin{quote}
+``Show that the set of compressible strings is recursively enumerable''
+\end{quote}
+
+There exists a TM P:
+\begin{enumerate}[label=]
+\item for n: $1\rightarrow\infty$
+\begin{enumerate}[label=]
+\item for $(n-1)^2$ strings s of length $n$
+\begin{enumerate}[label=]
+\item map s to an unused string of length $n-1$ by the mapping rule M
+\item output s
+\end{enumerate}
+\end{enumerate}
+\end{enumerate}
+
+TM P will generate all compressible strings based on any valid mapping rule M.  Therefore, P recursively enumerates the set of all compressible strings.
+
+\bigskip
+In other words:
+
+For an arbitrary $n$, there exists a mapping to strings of length $< n$.  For all strings of length $n$ which contain a mapping to such strings, output them (enumerate them).  The remainder are incompressible.  
+
+Use the above approach for all $n$ from $1\rightarrow\infty$.  All strings which contain a mapping to a smaller string are compressible and are enumerated.  The remainder are incompressible and are skipped.  
+
+Since this approach will eventually generate all strings in the language (enumerate all compressible strings), the set of compressible strings is recursively enumerable.
+
+\section{Problem 12}
+\begin{quote}
+``Show that for any $c>0$ there exists strings $x$ and $y$ such that $K(xy) > K(x) + K(y) + c$''
+\end{quote}
+
+There must exist a method of concatenation such that $x$ and $y$ can be extracted from $xy$. Consider a method which first encodes the length of $x$ then $x$ concatenated to $y$: $xy$=$|x|xy$.  $|x|$ can be encoded in $log_{2}(|x|)$ bits.  $K(xy)$ can then be rewritten as $K(x)+K(y)+log_{2}(|x|)$, yielding the inequality $K(x)+K(y)+log_{2}(|x|) > K(x) + K(y) + c$.  Since for an arbitrary string, $log_{2}(|x|) > c$, $K(xy) > K(x) + K(y) + c$.
+
+
+\end{document}

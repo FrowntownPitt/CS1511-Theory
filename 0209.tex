@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+\title{Homework 12}
+\author{Austin Frownfelter \and Matthew Bialecki}
+\date{February 9, 2018}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 18}
+\subsection{Part b}
+Player 2 has the winning strategy.  There exist values Player 2 can choose such that no matter what choices Player 1 chooses, Player 2 can make a winning move.
+
+If Player 1 chooses $w=F$, they cannot pick $y=T$ because Player 2 can pick $z=T$, causing the 2nd clause to be false (going the way of $C_{2}$).  If Player 1 chooses $w=T$, they cannot pick $y=F$ because Player 2 can pick $x=F$, causing the 3rd clause to be false (going the way of $C_{3}$).
+
+If Player 1 chooses $w=F$ and $y=F$ (since the latter is forced), Player 2 can pick $x=F$ and $z=F$, causing the 1st clause to be false (going the way of $C_{1}$).  If Player 1 chooses $w=T$ and $y=T$ (since the latter is forced), Player 2 can pick $x=F$ and $z=F$, causing the 1st clause to be false (going the way of $C_{1}$).  Since all cases of values Player 1 picks leads to Player 2 winning, there does not exist values which Player 1 can play such that they will win.  Therefore, Player 2 has the winning strategy in this game.
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+

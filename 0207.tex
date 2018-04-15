@@ -1,0 +1,109 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+\title{Homework 11}
+\author{Austin Frownfelter \and Matthew Bialecki}
+\date{February 7, 2018}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 16}
+\begin{quote}
+``Show that if there is a log space Turing machine S that accepts B, then there is a log space Turing Machine U that accepts A.''
+\end{quote}
+
+There is a TM T which its output is in B iff $x \in A$.  If there is a log space TM S that accepts B, then we can construct a TM U that accepts A:
+
+\bigskip
+U inputs x, and it must run T on x to get its output, which is the input to S to decide if it is in B.  If it is in B, then x is in A.
+
+We can simulate T on x until it outputs its first symbol, which is then fed into S.  T maintains its work tape, along with its current output, on the work tape of U.  Once T has output its first symbol, S is simulated until it requires another output symbol of T.  This required symbol's index $i$ is stored on the work tape of U, along with the work of S.  U then simulates T until it reaches its $i$th output, which is stored on the work tape.  S is then simulated from where it left off until it requires another output of T, where the process is then repeated.  U continues this process until S either accepts or rejects, which U will then accept or reject, respectively.  
+
+U has a work tape which stores the individual work tapes of S and T.  It also has to store the state of S when it runs T such that it can continue S later, along with the $i$th output of T.  In total, the work tape of U uses $2*log(x)+c$ where c is the constants which are the state of S and the $i$th output of T.
+
+Therefore, if there is a log space TM S that accepts B, there exists a log space TM U that accepts A.
+
+\section{Problem 17}
+\subsection{Part a}
+\begin{quote}
+``Define a language C, and show that C is complete for EXPSPACE under polynomial time reductions.''
+\end{quote}
+
+$C = \{(M,I,2^{n^{k}})$ $|$ $M$ accepts $I$ in space $2^{n^{k}}\}$
+
+\medskip
+$C$ is complete for EXPSPACE under polynomial time reductions.
+\begin{enumerate}[label=\arabic*)]
+    \item $C \in$ EXPSPACE
+    
+    There exists a TM $N$(TM $M$, input $I$, $2^{n^{k}}$) that decides $C$:
+    \begin{enumerate}[label=]
+        \item Run $M$ on $I$ for $2^{n^{k}}$ steps
+        \item If $M$ accepted or rejected, accept or reject respectively
+        \item Otherwise, reject
+    \end{enumerate}
+
+    $N$ decides $C$ in EXPSPACE, therefore $C\in$ EXPSPACE.
+    
+    
+    \item $\forall L \in$ EXPSPACE, $L \leq_{p} C$
+    
+    Let $L \in$ EXPSPACE
+    
+    $\exists$ TM $M$, integer $k$ $|$ $M$ accepts $x$ iff $x \in L$, $M$ on $x$ uses space $\leq 2^{|x|^{k}}$.
+    
+    $\exists$ TM $A$ which constructs input $(M,I,2^{|x|^{k}})$ and runs a decider for $C$ on it.  If the decider accepts, $A$ accepts; otherwise it rejects.
+    
+    $M$ and $I$ can be constructed in polynomial time. $2^{n^{k}}$ can be encoded using polynomial space in polynomial time.  
+\end{enumerate}
+
+\subsection{Part b}
+\begin{quote}
+``Define a language C, and show that C is complete for EXPSPACE under polynomial time reductions.''
+\end{quote}
+
+$C = \{(M,I,c^{n^{k}})$ $|$ $M$ accepts $I$ in space $c^{n^{k}}\}$
+
+\medskip
+$C$ is complete for EXPSPACE under polynomial time reductions.
+\begin{enumerate}[label=\arabic*)]
+    \item $C \in$ EXPSPACE
+    
+    There exists a TM $N$(TM $M$, input $I$, $c^{n^{k}}$) that decides $C$:
+    \begin{enumerate}[label=]
+        \item Run $M$ on $I$ for $c^{n^{k}}$ steps
+        \item If $M$ accepted or rejected, accept or reject respectively
+        \item Otherwise, reject
+    \end{enumerate}
+
+    $N$ decides $C$ in EXPSPACE, therefore $C\in$ EXPSPACE.
+    
+    
+    \item $\forall L \in$ EXPSPACE, $L \leq_{p} C$
+    
+    Let $L \in$ EXPSPACE
+    
+    $\exists$ TM $M$, integer $k$ $|$ $M$ accepts $x$ iff $x \in L$, $M$ on $x$ uses space $\leq c^{|x|^{k}}$.
+    
+    $\exists$ TM $A$ which constructs input $(M,I,c^{|x|^{k}})$ and runs a decider for $C$ on it.  If the decider accepts, $A$ accepts; otherwise it rejects.
+    
+    $M$ and $I$ can be constructed in polynomial time. $c^{n^{k}}$ can be encoded using polynomial space in polynomial time.
+\end{enumerate}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+

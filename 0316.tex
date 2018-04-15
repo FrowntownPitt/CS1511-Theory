@@ -1,0 +1,150 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+\usepackage{graphics}
+
+\title{Homework 22}
+\author{Austin Frownfelter \and Matthew Bialecki}
+\date{March 16, 2018}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 36}
+\begin{quote}
+Show that MAM is a subset of AM.
+\end{quote}
+
+Consider an MAM protocol.  The soundness error for this protocol is $\leq \frac13$.  Merlin sends a message, $\pi$, to Arthur, who then flips a coin to decide whether x $\in$ L.  The probability Arthur accepts if x $\notin$ L is $\leq \frac13$.  By using the known error reduction technique, Arthur can flip $m+1$ coins and decide if any of them would make him reject.  The probability Merlin fools Arthur is $\leq \frac1{3^{m+1}}$.
+
+Consider switching the protocol such that Arthur sends his random coin flips to Merlin before Merlin sends his message.  Merlin can choose up to $m$ different messages to send.  For any given $\pi$ Merlin chooses, the probability it will fool Arthur is $\leq \frac1{3^{m+1}}$.  By using the union bound, the probability Merlin can choose a $\pi$ which fools Arthur for all of his coin flips is $\leq \frac13$.  Therefore, this new AMM protocol is still sound.
+
+Since an AMM protocol is equivalent to an AM protocol where both M messages are sent at once, this MAM protocol can be converted into an AM protocol.  Therefore, MAM $\subseteq$ AM.
+
+
+\section{Problem 37}
+
+\subsection{Part a}
+\begin{quote}
+First consider the protocol without linearization.
+\end{quote}
+
+\subsubsection{i}
+\begin{quote}
+What is the integer S and polynomial s(x) that  Merlin  sends  in  the  first round?
+\end{quote}
+
+\begin{enumerate}[label=]
+\item S = 2.
+\item $s(x) = \Pi_{y=0}^1 \Sigma_{z=0}^1 P(x,y,z)$
+\item = $\Sigma_{z=0}^1 P(x,0,z) * P(x,1,z)$
+\item = $P(x,0,0) * P(x,1,0) + P(x,0,1) * P(x,1,1)$
+\item = $((1-(1-x)*1*0) * (1-x*0*1)) * ((1-(1-x)*0*0) * (1-(1-x)*1*1)) + ((1-(1-x)*1*1) * (1-x*0*0)) * ((1-(1-x)*0*1) * (1-(1-x)*1*0))$
+\item = $(1*1)*(1*(1-(1-x))) + ((1-(1-x))*1)*(1*1)$
+\item = $(1)*(x) + (x)*1$
+\item = $2x$
+\end{enumerate}
+
+\subsubsection{ii}
+\begin{quote}
+What is the polynomial that Merlin sends in his second message to Arthur? 
+\end{quote}
+
+\begin{enumerate}[label=]
+\item $s(r) = \Pi_{y=0}^1 \Sigma_{z=0}^1 P(r,y,z)$
+\item $q(y) = \Sigma_{z=0}^1 P(r,y,z)$
+\item = $P(r,y,0) + P(r,y,1)$
+\item = $(1-(1-r)*(1-y)*0) * (1-r*y*1) + (1-(1-r)*(1-y)*1) * (1-r*y*0)$
+\item = $(1)*(1-r*y) + (1-(1-r)*(1-y))*(1)$
+\item = $(1-r*y) + (1-(1-r)*(1-y))$
+\item = $(1-\frac13*y) + (1-(1-\frac13)*(1-y))$
+\item = $1-\frac13*y + (1-\frac23*(1-y))$
+\item = $1-\frac13*y + (1-\frac23+\frac23y)$
+\item = $\frac13y + \frac43$
+\end{enumerate}
+
+\subsubsection{iii}
+\begin{quote}
+Arthur  checks  this  second  polynomial  to  see  if  it  has  some  property,  what property is this?
+\end{quote}
+
+Whether $q(0)*q(1)=s(r)$ (if not, reject; otherwise continue)
+
+\bigskip
+
+\subsection{Part b}
+\begin{quote}
+Now consider the protocol with linearization.
+\end{quote}
+
+\subsubsection{i}
+\begin{quote}
+What is the integer S and polynomial s(x) that  Merlin  sends  in  the  first round?
+\end{quote}
+
+\begin{enumerate}[label=]
+\item S = 2.
+\item $s(x) = \Pi_{y=0}^1 \Sigma_{z=0}^1 P(x,y,z)$
+\item = $\Sigma_{z=0}^1 P(x,0,z) * P(x,1,z)$
+\item = $P(x,0,0) * P(x,1,0) + P(x,0,1) * P(x,1,1)$
+\item = $((1-(1-x)*1*0) * (1-x*0*1)) * ((1-(1-x)*0*0) * (1-(1-x)*1*1)) + ((1-(1-x)*1*1) * (1-x*0*0)) * ((1-(1-x)*0*1) * (1-(1-x)*1*0))$
+\item = $(1*1)*(1*(1-(1-x))) + ((1-(1-x))*1)*(1*1)$
+\item = $(1)*(x) + (x)*1$
+\item = $2x$
+\item = $x$
+\end{enumerate}
+
+\subsubsection{ii}
+\begin{quote}
+What is the polynomial that Merlin sends in his second message to Arthur? 
+\end{quote}
+
+\begin{enumerate}[label=]
+\item $s(r) = \Pi_{y=0}^1 \Sigma_{z=0}^1 P(r,y,z)$
+\item $q(y) = \Sigma_{z=0}^1 P(r,y,z)$
+\item = $P(r,y,0) + P(r,y,1)$
+\item = $(1-(1-r)*(1-y)*0) * (1-r*y*1) + (1-(1-r)*(1-y)*1) * (1-r*y*0)$
+\item = $(1)*(1-r*y) + (1-(1-r)*(1-y))*(1)$
+\item = $(1-r*y) + (1-(1-r)*(1-y))$
+\item = $(1-\frac13*y) + (1-(1-\frac13)*(1-y))$
+\item = $1-y + (1-(1-y))$
+\item = $1-y + y$
+\item = $1$
+\end{enumerate}
+
+\subsubsection{iii}
+\begin{quote}
+Arthur  checks  this  second  polynomial  to  see  if  it  has  some  property,  what property is this?
+\end{quote}
+
+Whether $q(0)*q(1)=s(r)$ (if not, reject; otherwise continue)
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

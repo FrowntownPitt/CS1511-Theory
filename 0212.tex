@@ -1,0 +1,105 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+\title{Homework 13}
+\author{Austin Frownfelter \and Matthew Bialecki}
+\date{February 12, 2018}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 19}
+\subsection{Part a}
+EXACT INDSET $= \{(G,k)$ $|$ The largest indep. set in $G$ has size exactly $k$\}
+\\
+EXACT INDSET $= \{(G,k)$ $|$ $\forall r \exists s $ (s is an indep. set in G and $|s|=k$) $\land$ 
+
+ (r is not an indep. set or $|r| \leq |s|$)\}
+
+\bigskip
+By definition of $\Pi_{2}^{p}$, 
+
+$T \leftarrow \{(G,k)$ \begin{enumerate}[label=]
+\item s
+\item r\}
+\end{enumerate}
+
+where s is the advice tape and r is the disadvice tape.
+
+A trivial check whether a set is independent will take n iterations of (n-1) comparisons, which is polynomial.  Therefore, there does exist a $k$ where $T(x,s,r)$ will accept in $|x|^{k}$ time.
+
+Therefore, EXACT INDSET $\in \Pi_{2}^{p}$
+
+
+\subsection{Part b}
+SUCCINCT SET COVER = $\{(S,n,k)$ $|$ $\exists S'$ $ \forall i$  $S'\subseteq \{1,2,...,|S|\} $ $\land $ $|S'|\leq k$ $\land$  $\lor_{i\in S'} \varphi_{i}\}$
+
+\bigskip
+By definition of $\Sigma_{2}^{p}$, 
+
+$T \leftarrow \{(S,n,k)$ \begin{enumerate}[label=]
+\item S'
+\item i\}
+\end{enumerate}
+
+where $S'$ is the advice tape and $i$ is the disadvice tape.
+
+Checking whether a statement is a tautology takes polynomial time.  Therefore, there does exist a $k$ where $T(x,S',i)$ will accept in $|x|^{k}$ time.
+
+Therefore, SUCCINCT SET COVER $\in \Sigma_{2}^{p}$
+
+\subsection{Part c}
+VC-DIMENSION = $\{(C,k)$ $|$ C is a collection $S$ such that $VC(C)$ $\geq$ k\}\\
+VC-DIMENSION = $\{(C,k)$ $|$ $\exists X \forall s \forall X' \exists i$ where $X \subseteq U$, $s \subseteq U$, $|X| \geq |s|$, $X' \subseteq X$, $S_{i} \cap X = X'$ \}
+
+\bigskip
+By definition of $\Sigma_{3}^{p}$, 
+
+$T \leftarrow \{(C,k)$ \begin{enumerate}[label=]
+\item $X$
+\item $(s,X')$
+\item $i$\}
+\end{enumerate}
+
+All qualifiers take polynomial time, therefore there does exist a $k$ where $T(x,X,(s,X'),i)$ will accept in $|x|^{k}$ time.
+
+Therefore, VC-DIMENSION $\in \Sigma_{3}^{p}$
+
+\subsection{Part d}
+Let $L_{1}$ = $\{(G,k)$ $|$ $\exists s ($s is an independent set in G and $|s|=k$)\}
+\\
+Let $L_{2}$ = $\{(G,k)$ $|$ $\forall r ($r is not an independent set in G or $|r|\leq k$)\}
+\\
+Let $L = L_{1} \cap L_{2}$
+
+\bigskip
+$L = $ EXACT INDSET.  Since $L_{1} \in \Sigma_{1}^{p}$ and $L_{2} \in \Pi_{1}^{p}$, $L \in DP$.
+
+
+\section{Problem 20}
+
+$3SAT$ is NP-complete and has been proven as such.  $\overline{3SAT}$ is coNP-complete by property that negation of quantifiers in $\Sigma_{1}^{p}$ yield the quantifiers in $\Pi_{1}^{p}$.
+
+If $3SAT$ is reducible to $\overline{3SAT}$ under poly time reductions, then there exists polynomial time conversions between the two classes.  As a result, $\Sigma_{1}^{p} \subseteq \Pi_{1}^{p}$ since all $\Sigma_{1}^{p}$ problems can be converted into $\Pi_{1}^{p}$ problems, and $\Pi_{1}^{p} \subseteq \Sigma_{1}^{p}$ since all $\Pi_{1}^{p}$ problems can be converted into $\Sigma_{1}^{p}$ problems.  Therefore, $\Sigma_{1}^{p} = \Pi_{1}^{p}$.
+
+For a fixed value of the first quantifier in $\Sigma_{n}^{p}$, there exists a $\Pi_{n-1}^{p}$, making $\Sigma_{n}^{p} = \Sigma_{1}^{p} \Pi_{n-1}^{p}$.  This can be expanded further into the form $\Sigma_{1}^{p}$$\Pi_{1}^{p}$...$\Sigma_{1}^{p}$.  Further, since $\Sigma_{1}^{p} = \Pi_{1}^{p}$, $\Sigma_{n}^{p} = (\Sigma_{1}^{p})^{n}$  Each $\Sigma_{1}^{p}$ has its own machine with access to an oracle machine.  We can construct an NDTM M which is the concatenation of all of these machines.  If M accepts, then the $\Sigma_{n}^{p}$ problem is accepted.  M nondeterministically decides $\Sigma_{n}^{p}$ in polynomial time.  Therefore, $\Sigma_{n}^{p}$ can be reduced to a $\Sigma_{1}^{p}$ problem.  Therefore, $\Sigma_{n}^{p} \subseteq \Sigma_{1}^{p}$. Therefore, $\Sigma_{n}^{p} = \Sigma_{1}^{p}$.  This logic holds for $\Pi_{n}^{p}$.
+
+The result is all problems in the $PH$ can be reduced to an $NP$ problem.  Therefore, if $3SAT$ is reducible to $\overline{3SAT}$, $PH=NP$.
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+

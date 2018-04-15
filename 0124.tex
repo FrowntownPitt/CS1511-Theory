@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{enumitem}
 
-\title{Homework 5}
+\title{Homework 7}
 \author{Austin Frownfelter \and Matthew Bialecki}
 \date{January 24, 2018}
 
@@ -11,63 +11,39 @@
 
 \maketitle
 
-\section{Problem 7}
-\subsection{Part A}
-Show one valid computation history H for the input $I=101$ for Turing machine M.
-
-\[ \#>q_0101\_\#>1q_101\_\#>11q_11\_\#>110q_0\_\#>110q_0\_\#... \]
-
-\subsection{Part B}
-
-Give the Godel sentence $S$ for the $M$ and $I$ in the previous subproblem.
-
-$\exists H | $ H is a computation history that proves M halts on I.
-
-\bigskip
-$H$ is a valid computation history that proves M halts on I iff
-\begin{enumerate}[itemsep=0mm]
-\item First configuration is the starting configuration
-\item Each configuration follows the previous one
-\item Final configuration is the halting configuration
+\section{Problem 9}
+This excerpt of Through the Wormhole with Morgan Freeman details how information/entropy, is stored within a blackhole. The clip centers around a scientific feud between Stephen Hawking, who asserts information that falls into a black hole is destroyed, and Leonard Susskind, who asserts that the information is in fact encoded into the black hole itself. Susskind details a process that would take a ?measurement? of an object as it falls in and encodes it on the surface so that eventually when the black hole radiates the energy away in the form of Hawking Radiation, that radiation will be affected by the information encoded on the black hole, thus the information of what fell in was not lost. In other words, if very sophisticated alien scientists were to take measurements of this Hawking Radiation, they would be able to tell something about what fell into the hole. This ideas as a hole is called the Holographic Principle. Since information of 3D space is encoded on a 2D surface as a holographic projection. This Holographic Principle is an effective mechanism of information encoding because it reconciles a paradox in physics concerning two different realities that emerge from two different viewpoints in space. Someone on the outside would see someone falling into the hole slow down and stop, but the person inside the black hole would fall cleanly through. The Holographic Principle solves this by saying as the person falls in, they smear over the surface of the blackhole/fall to the center of it. 
+\section{Problem 10}
+\subsection{Part a}
+\begin{enumerate}[label=\roman*. ]
+\item \(H(X)=\frac{1}{3}log 3 + \frac{2}{3}log\frac{3}{2} \approx 0.91826\)
+\item \(P(Y=0)=\frac{13}{30} \approx 0.43333\)\\\(P(Y=1)=\frac{17}{30} \approx 0.56667\)
+\item \(H(Y)=\frac{13}{30}log\frac{30}{13} + \frac{17}{30}log\frac{30}{17} \approx 0.98714\)
+\item \(H(X|Y)=\displaystyle\sum_{x\in X,y\in Y} p(x,y)log(\frac{1}{p(x|y)}) \approx 0.568775\)
+\item \(H(Y|X)=\displaystyle\sum_{x\in X,y\in Y} p(x,y)log(\frac{1}{p(y|x)}) \approx 0.637617\)
+\item \(I(X;Y)=H(X)-H(X|Y) \approx 0.3495\)
+\item \(I(Y;X)=H(Y)-H(Y|X) \approx 0.3495\)
+\item The mutual information is the information which is shared between X and Y.  Intuitively, the information shared between X and Y is the same as the information shared between Y and X (this is a commutative property).  It measures the average amount of information which is incorrect between X and Y after going through a noisy channel.  The value of I ranges between 0 and 1, where 0 means all information is shared (minimum uncertainty) and 1 means no information is shared (maximum uncertainty).
 \end{enumerate}
 
-where H can be represented as a number of base B where B is the size of the tape alphabet plus the number of final states in set Q + the pound sign.
-
-where
-
-\begin{enumerate}[label=\arabic*)]
-\item $\exists l$ $ l=log_B H$ where
+\subsection{Part b}
+For this part, we were unable to prove the questions.  After further research, we discovered we potentially could not without further knowledge of Relative Entropy and Jensen's Theorem (both went over our heads).  Here is our attempt.
+\begin{enumerate}[label=\roman*. ]
+\item
 \begin{enumerate}[label=]
-\item$PLACE(l)=\# $ $\land $
-\item$PLACE(l-1)=> $ $\land $
-\item$PLACE(l-2)=q_0 $ $\land $
-\item$\forall i PLACE(i)\in I $ $|$ $ l-2>i>NEXT(l-2,\#) $
+\item \(I(X;Y)=H(X)-H(X|Y)\)
+\item \(I(X;Y)=\displaystyle\sum_{x}p(x)log(\frac{1}{p(x)}) - \displaystyle\sum_{x,y}p(x,y)log\frac{1}{p(x|y)})\)
+\item \(p(x) \geq p(x,y)\) therefore \(\displaystyle\sum_{x}log(\frac{1}{p(x)}) \geq \displaystyle\sum_{x,y}log(\frac{1}{p(x|y)})\) must hold.
+\item Therefore \(\displaystyle\sum_{x,y} log(\frac{1}{p(x)}) - log(\frac{1}{p(x|y)}) \geq 0\)
+\item \(\displaystyle\sum_{x,y} log(\frac{p(x|y)}{p(x)}) \geq 0\)
+\item \(\displaystyle\sum_{x,y} log(\frac{p(x,y)}{p(x)p(x)}) \geq 0\)
+\item \(p(x) \geq p(x,y)\)
 \end{enumerate}
 
-\item$\forall q$ $STATE(q) $  $ q<log_B H-3$\\
-$TABLE(PREVS(q)-1-PREV(PREVS(q),\#)+PREV(q,\#), \\PREVS(q)-1)$
-
-\item$\exists p$ $PLACE(p)=q_h $ $ \forall q $ $STATE(q) $ $|$ $q\geq p$
+\item We expanded the equation \(I(X;Y)=I(Y;X)\) as much as possible and attempted to add pieces to get a net removal of elements until both sides were equal.  It did not get us anywhere.
 \end{enumerate}
 
-\begin{description}
-\item[PLACE(l)]$\iff H $ $mod$ $ B^{P+1}$ $div$ $B^P$
-\item[STATE(S)]$\iff PLACE(S)=q_0 \lor PLACE(S)=q_1 \lor PLACE(S)=q_h$
-\item[NEXT(i,s)]$\iff \exists j $ $PLACE(j)=s $ $|$ $j<i$ $|$ $\neg \exists k$ $PLACE(k)=s $ $k<j<i$
-\item[PREV(i,s)]$\iff \exists j $ $PLACE(j)=s $ $|$ $j>i$ $|$ $\neg \exists k$ $PLACE(k)=s $ $i<j<k$
-\item[NEXTS(i)]$\iff \exists s $ $STATE(s) \land NEXT(i,s)$
-\item[PREVS(i)]$\iff \exists s $ $STATE(s) \land PREV(i,s)$
-\item[TABLE(i,j)]$\iff PLACE(i)=PLACE(j) $ $\land $
-\begin{enumerate}[label=]
-\item $PLACE(i+1) = q_0 \land PLACE(i+2)=0 \land PLACE(j+1)=0 \land PLACE(j+2)=q_0$
-\item $PLACE(i+1) = q_0 \land PLACE(i+2)=1 \land PLACE(j+1)=1 \land PLACE(j+2)=q_1$
-\item $PLACE(i+1) = q_0 \land PLACE(i+2)=\_ \land PLACE(j+1)=q_0 \land PLACE(j+2)=\_$
-\item $PLACE(i+1) = q_1 \land PLACE(i+2)=0 \land PLACE(j+1)=1 \land PLACE(j+2)=q_1$
-\item $PLACE(i+1) = q_1 \land PLACE(i+2)=1 \land PLACE(j+1)=0 \land PLACE(j+2)=q_0$
-\item $PLACE(i+1) = q_1 \land PLACE(i+2)=\_ \land PLACE(j+1)=q_h \land PLACE(j+2)=\_$
-\end{enumerate}
-\end{description}
 
-By these three statements the Godel sentence is true iff H is a valid computation history.
+
 
 \end{document}

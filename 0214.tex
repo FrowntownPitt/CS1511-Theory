@@ -1,0 +1,56 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+\title{Homework 14}
+\author{Austin Frownfelter \and Matthew Bialecki}
+\date{February 14, 2018}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 21}
+\subsection{Part a}
+\begin{quote}
+``Show that if a Boolean function can be computed by a circuit with S gates then it can be computed by a Boolean Formula of size approximately S''
+\end{quote}
+
+A circuit can be represented as a directed acyclic graph, where each node represents a gate and the nodes it points to represent its input.  For the case where all circuits are limited to a gate having an out-degree of 1, this graph is a binary tree.  The size of this formula is simply $S$, since the tree is essentially just the circuit because we do not need to encode each gate as a variable (as we need to in the next case).  In the case where there is an out-degree allowance of greater than 1, then any gate with an out-degree greater than 1 must be referenced as a variable.  Each of these gates can be encoded in a variable in size $log(S+n)$, yielding a tree/formula of size $S*log(S+n)$.  We will say this is approximately equal to S.
+
+\begin{quote}
+``Show that if a Boolean function can be computed by a Boolean Formula of size S then it can be computed by a circuit of size approximately S''
+\end{quote}
+
+A Boolean Formula is equivalent to a circuit with out-degree of 1.  A Boolean formula can be represented as a tree where each node represents a gate and its children represent its input.  Thus, the circuit would be of size $S$, since the size of the formula is $S$ and each node is mapped one-to-one with a gate.
+
+\subsection{Part b}
+\begin{quote}
+Prove that for every $f: \{0, 1\}^{n} \rightarrow \{0,1\}$ and $S \in \mathcal{N}$, $f$ can be computed by a Boolean circuit of size S if and only if $f$ can be computed by an S-line program of the type described in Example 6.4.
+\end{quote}
+
+Assume $f$ is computable by a straight-line program.  Construct a circuit for the first line where the RHS variables are inputs to the gate which represents the operator.  The LHS represents this circuit's name/output.  For all remaining lines, construct a circuit using the RHS variables as inputs to the gate of the line's operator.  More informally, connect the output of each variable's circuit to the input of this line's operator.  The output of this circuit is represented by the y variable on this LHS.  Continue this operation until all lines have a circuit.  The final line is the final circuit.  This circuit will have $S$ gates since there are $S$ operations based on existing circuits.
+
+If $f$ cannot be computed by a valid S-line program, then this will not yield a valid circuit.
+
+Therefore, $f$ can be computed by a Boolean circuit of size S if and only if $f$ can be computed by an S-line program of the described type.
+
+\section{Problem 22}
+Shannon's proof states that most boolean functions require circuits of size $2^{n}$ bits which is approximately $\frac{2^{n}}{n}$ gates.
+
+Where there are $g$ gates, there are $g \log g$ bits to represent them.  With $g \log g$ bits where $g$ is $n^{4}$, there are $\leq$ $2^{n^4 \log n^4}$ number of different boolean functions of input size $n$.  When $g$ is $n^2$, there are $\leq$ $2^{n^2 \log n^2}$ number of different boolean functions of input size $n$.  Since most functions require circuits of size $2^n$ bits = $\frac{2^n}{n}$ gates, there are more boolean functions of input size $n$ which require $< n^4$ gates than require $< n^2$ gates.  Therefore, there exist boolean functions which can be computed with $n^4$ gates but not $n^2$ gates.
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
